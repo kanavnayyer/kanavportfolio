@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Kanav Nayyar - Software Engineer in Noida building production Android, Flutter and Kotlin Multiplatform apps serving 50,000+ daily active users.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Kanav Nayyar - Mobile Engineer">
+<meta property="og:description" content="Android, Flutter and KMP apps shipped to real users on Google Play.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2318604C'/><text x='50' y='68' font-size='52' font-family='Helvetica,Arial' font-weight='bold' fill='white' text-anchor='middle'>K</text></svg>">
+<title>Kanav Nayyar — Mobile Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper:      #F3F4F1;
+    --surface:    #FFFFFF;
+    --ink:        #161A17;
+    --muted:      #656C64;
+    --faint:      #8B928A;
+    --line:       #DEE2DB;
+    --line-soft:  #E9ECE6;
+    --accent:     #18604C;
+    --accent-ink: #0E4436;
+    --accent-wash:#E4EFE9;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #12140F;
+      --surface:    #1A1D18;
+      --ink:        #ECEFE8;
+      --muted:      #A2A99E;
+      --faint:      #7C837A;
+      --line:       #2C3129;
+      --line-soft:  #23271F;
+      --accent:     #6FC3A5;
+      --accent-ink: #9BD9C2;
+      --accent-wash:#1D2E27;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #12140F;
+    --surface:    #1A1D18;
+    --ink:        #ECEFE8;
+    --muted:      #A2A99E;
+    --faint:      #7C837A;
+    --line:       #2C3129;
+    --line-soft:  #23271F;
+    --accent:     #6FC3A5;
+    --accent-ink: #9BD9C2;
+    --accent-wash:#1D2E27;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding-inline: 24px;
+  }
+
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  h1, h2, h3, h4 { font-family: var(--display); text-wrap: balance; margin: 0; }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-block: 12px;
+  }
+  .mark { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: 15px; white-space: nowrap; }
+  .topnav { margin-left: auto; display: flex; gap: 18px; }
+  .topnav a { font-size: 13.5px; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .topnav a:hover { color: var(--ink); }
+  @media (max-width: 720px) {
+    .topbar .wrap { gap: 14px; padding-inline: 16px; }
+    .topnav {
+      gap: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-block: 2px;
+    }
+    .topnav::-webkit-scrollbar { display: none; }
+    .topnav a { font-size: 13px; }
+  }
+  @media (max-width: 460px) {
+    .topnav a[href="#experience"], .topnav a[href="#shipped"] { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: 72px 52px; }
+  @media (max-width: 640px) { .hero { padding-block: 44px 40px; } }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--accent-ink); background: var(--accent-wash);
+    border-radius: 999px; padding: 5px 12px 5px 10px;
+  }
+  .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .hero h1 {
+    font-size: clamp(38px, 7vw, 60px);
+    font-weight: 700; letter-spacing: -0.035em; line-height: 1.03;
+    margin-top: 22px;
+  }
+  .hero .lede {
+    max-width: 62ch; margin-top: 20px;
+    font-size: clamp(17px, 2.2vw, 19px); color: var(--muted);
+  }
+  .hero .lede strong { color: var(--ink); font-weight: 600; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14.5px; font-weight: 600; padding: 11px 18px;
+    border-radius: 8px; text-decoration: none;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+  :root[data-theme="dark"] .btn.primary { color: #10231C; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .btn.primary { color: #10231C; }
+  }
+  .btn:hover { border-color: var(--accent); }
+
+  /* ---------- stats strip ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px; background: var(--line-soft); border-block: 1px solid var(--line-soft);
+  }
+  .stat { background: var(--paper); padding: 20px 4px 22px; }
+  .stat .n {
+    font-family: var(--display); font-size: clamp(22px, 3.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1.1;
+  }
+  .stat .k {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--faint); margin-top: 6px;
+  }
+  @media (max-width: 620px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ---------- section shell ---------- */
+  section.wrap { padding-block: 72px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--faint);
+  }
+  .sec-head { margin-bottom: 36px; }
+  .sec-head h2 {
+    font-size: clamp(25px, 4vw, 32px); font-weight: 600;
+    letter-spacing: -0.028em; margin-top: 10px;
+  }
+  .sec-head p { color: var(--muted); max-width: 62ch; margin: 10px 0 0; }
+
+  /* ---------- work list ---------- */
+  .work { display: flex; flex-direction: column; }
+  .proj {
+    display: grid; grid-template-columns: 96px minmax(0, 1fr);
+    gap: 28px; padding-block: 36px;
+    border-top: 1px solid var(--line); align-items: start;
+  }
+  .proj:last-child { border-bottom: 1px solid var(--line); }
+  .proj .glyph {
+    width: 88px; height: 88px; border-radius: 20px;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 700; font-size: 28px; letter-spacing: -0.03em;
+    color: var(--accent-ink); background: var(--accent-wash); border: 1px solid var(--line-soft);
+  }
+  .proj h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; }
+  .proj .org { color: var(--muted); font-size: 14.5px; margin-top: 3px; }
+  .proj .org em { font-style: italic; color: var(--faint); }
+  .proj p.desc { margin: 14px 0 0; color: var(--muted); max-width: 60ch; }
+  .bullets { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+  .bullets li {
+    position: relative; padding-left: 18px;
+    font-size: 14.5px; color: var(--muted); max-width: 62ch;
+  }
+  .bullets li::before {
+    content: ""; position: absolute; left: 0; top: 10px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  }
+  .bullets b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 0; list-style: none; padding: 0; }
+  .tags li {
+    font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 5px; padding: 3px 8px;
+  }
+  .meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px;
+    font-family: var(--mono); font-size: 12px; color: var(--faint);
+  }
+  .meta code {
+    font-family: var(--mono); background: var(--line-soft); border-radius: 4px;
+    padding: 2px 6px; color: var(--muted); overflow-wrap: anywhere;
+  }
+  .meta a { color: var(--accent-ink); font-weight: 500; }
+  @media (max-width: 640px) {
+    .proj { grid-template-columns: 1fr; gap: 18px; }
+    .proj .glyph { width: 60px; height: 60px; border-radius: 15px; font-size: 20px; }
+  }
+
+  /* ---------- own apps ---------- */
+  .shipped {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+  }
+  .shipped div { background: var(--surface); padding: 18px 20px 20px; }
+  .shipped .t { font-family: var(--display); font-weight: 600; font-size: 15.5px; letter-spacing: -0.015em; }
+  .shipped .s { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+
+  /* ---------- skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px 40px; }
+  .skills h4 {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--faint); font-weight: 500; margin: 0 0 10px;
+  }
+  .skills ul { margin: 0; padding: 0; list-style: none; }
+  .skills li { padding: 6px 0; border-bottom: 1px solid var(--line-soft); font-size: 14.5px; }
+  .skills li:last-child { border-bottom: 0; }
+
+  /* ---------- experience ---------- */
+  .role {
+    display: grid; grid-template-columns: 158px minmax(0, 1fr);
+    gap: 24px; padding-block: 26px; border-top: 1px solid var(--line-soft);
+  }
+  .role .when { font-family: var(--mono); font-size: 12.5px; color: var(--faint); padding-top: 4px; }
+  .role h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; }
+  .role .co { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .role .bullets { margin-top: 14px; }
+  @media (max-width: 640px) { .role { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* ---------- contact ---------- */
+  section.wrap.contact { border-top: 1px solid var(--line); padding-block: 72px 28px; }
+  .contact h2 { font-size: clamp(27px, 5vw, 38px); font-weight: 700; letter-spacing: -0.03em; }
+  .contact p { color: var(--muted); max-width: 54ch; margin: 14px 0 0; }
+  .links {
+    display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 26px;
+    font-family: var(--mono); font-size: 14px;
+  }
+  .links a { overflow-wrap: anywhere; }
+  footer {
+    border-top: 1px solid var(--line-soft); padding-block: 22px 40px;
+    font-family: var(--mono); font-size: 11.5px; color: var(--faint);
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+</style>
+</head>
+<body>
+
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="mark">Kanav Nayyar</span>
+    <nav class="topnav">
+      <a href="#work">Work</a>
+      <a href="#shipped">Own apps</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="status"><span class="dot"></span>Open to mobile roles</span>
+    <h1>Android &amp; Flutter apps that ship to real users.</h1>
+    <p class="lede">I'm a <strong>Software Engineer in Noida</strong> building production mobile apps in <strong>Kotlin, Jetpack Compose, Flutter and Kotlin Multiplatform</strong>. I've launched <strong>12 apps</strong> serving <strong>50,000+ daily active users</strong> — India's national gas exchange, a hotel platform running in Radisson Blu and Leela properties, an Australian security firm's field-ops tool, and a 200+ salon Canadian chain — while holding a <strong>99.2% crash-free rate</strong>.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#work">See the apps</a>
+      <a class="btn" href="mailto:kanavnayyer@gmail.com">kanavnayyer@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">12</div><div class="k">Apps launched</div></div>
+      <div class="stat"><div class="n">50,000+</div><div class="k">Daily active users</div></div>
+      <div class="stat"><div class="n">99.2%</div><div class="k">Crash-free sessions</div></div>
+      <div class="stat"><div class="n">17</div><div class="k">Store releases</div></div>
+    </div>
+  </div>
+
+  <!-- ======== WORK ======== -->
+  <section id="work" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Client &amp; product work</div>
+      <h2>Apps I've built as part of the mobile team</h2>
+      <p>All four are live on Google Play. I worked on these as a mobile developer inside the product team — architecture, feature work, API integration, performance and release.</p>
+    </div>
+
+    <div class="work">
+
+      <article class="proj">
+        <div class="glyph">IGX</div>
+        <div>
+          <h3>IGX — Indian Gas Exchange</h3>
+          <div class="org">India's authorised gas exchange · spot &amp; forward gas trading <em>· Business</em></div>
+          <p class="desc">The official trading app for India's gas exchange, covering RLNG, domestic, HPHT and ssLNG contracts across six regional hubs, with the GIXI price index and a delivery-point map of Indian terminals.</p>
+          <ul class="bullets">
+            <li>Streamlined GraphQL and REST integration with caching, cutting market-data latency by <b>45%</b> against the previous polling approach.</li>
+            <li>Built the app architecture on <b>MVVM, Hilt, Kotlin Coroutines, Flow and the Repository pattern</b>, improving maintainability and feature velocity.</li>
+            <li>Reduced cold start time by <b>28%</b> through performance optimisation, cutting user abandonment at launch.</li>
+            <li>Designed the order book, market depth and live price trend UI now used by active traders.</li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Jetpack Compose</li><li>GraphQL</li><li>MVVM + Hilt</li><li>Coroutines / Flow</li></ul>
+          <div class="meta">
+            <code>com.igx.android.app.prod</code>
+            <a href="https://play.google.com/store/apps/details?id=com.igx.android.app.prod" target="_blank" rel="noopener">View on Google Play ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="glyph">APS</div>
+        <div>
+          <h3>APS — Security Platform</h3>
+          <div class="org">Australasian Protective Services · mobile patrols &amp; cash-in-transit, Australia <em>· Productivity</em></div>
+          <p class="desc">Field-reporting app for security officers on patrol. Officers log shift details, vehicle and job-site data at each checkpoint, giving head office a verified digital record of completed work.</p>
+          <ul class="bullets">
+            <li>Built NFC checkpoint verification, raising scan accuracy from <b>60% to 98%</b> and eliminating missed patrol validations.</li>
+            <li>Deployed GPS tracking and route monitoring, cutting patrol response time by <b>25%</b> across <b>15+ security sites</b>.</li>
+            <li>Developed OCR-based ID extraction with Firebase ML Kit and CameraX, processing <b>500+ IDs/day</b> at <b>95% accuracy</b>.</li>
+            <li>Established an offline-first architecture with secure local storage for <b>100% operational continuity</b> in zero-connectivity environments.</li>
+          </ul>
+          <ul class="tags"><li>Android SDK</li><li>NFC</li><li>CameraX</li><li>Firebase ML Kit</li><li>Offline-first</li><li>Room</li></ul>
+          <div class="meta">
+            <code>security.aps.app</code>
+            <a href="https://play.google.com/store/apps/details?id=security.aps.app" target="_blank" rel="noopener">View on Google Play ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="glyph">BOT</div>
+        <div>
+          <h3>Botshot — Hotel Management Platform</h3>
+          <div class="org">Adopted by Leela Hotels and Radisson Blu <em>· Business</em></div>
+          <p class="desc">An all-in-one hotel operations app: reservations, contactless smartphone check-in, guest-messaging automation, and rate and inventory control pushed across booking channels.</p>
+          <ul class="bullets">
+            <li>Spearheaded the platform now serving <b>8+ properties</b> and <b>150+ staff users</b> across Leela Hotels and Radisson Blu.</li>
+            <li>Resolved 3 critical memory leaks and cut startup latency by <b>32%</b>, reducing post-release crash reports by <b>55%</b>.</li>
+            <li>Restructured the codebase into <b>4 feature modules</b>, cutting build time by <b>40%</b> and accelerating team onboarding.</li>
+            <li>Produced operational dashboards tracking <b>500+ daily task completions</b> across booking, orders and staff coordination.</li>
+            <li>Leveraged Kotlin Coroutines for asynchronous processing and app performance.</li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Flutter</li><li>Modular architecture</li><li>Coroutines</li><li>Push notifications</li></ul>
+          <div class="meta">
+            <code>com.botshot.app</code>
+            <a href="https://play.google.com/store/apps/details?id=com.botshot.app" target="_blank" rel="noopener">View on Google Play ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="glyph">CH</div>
+        <div>
+          <h3>Chatters — Salon Booking App</h3>
+          <div class="org">Chatters Limited Partnership · 200+ salons across Canada <em>· Lifestyle</em></div>
+          <p class="desc">A consumer app combining appointment booking, e-commerce and loyalty for Canada's largest salon chain, including an AR hair try-on built on ARCore face mesh tracking.</p>
+          <ul class="bullets">
+            <li>Unified <b>6 payment gateways</b> — Klarna, Apple Pay, Google Pay, PayPal, Global Pay, Realex — boosting payment conversions by <b>35%</b>.</li>
+            <li>Implemented location-based salon discovery with the Google Maps SDK, surfacing <b>200+ salons</b> across 5 cities with real-time availability.</li>
+            <li>Pioneered AR hair try-on using ARCore face mesh tracking, generating <b>4× higher engagement</b> than static previews in A/B testing.</li>
+            <li>Optimised the checkout flow, cutting booking completion time from <b>3.2 min to 1.8 min</b> (44% faster).</li>
+          </ul>
+          <ul class="tags"><li>Flutter</li><li>ARCore</li><li>Google Maps SDK</li><li>Payments</li><li>A/B testing</li></ul>
+          <div class="meta">
+            <code>com.chatters.app.prod</code>
+            <a href="https://play.google.com/store/apps/details?id=com.chatters.app.prod&amp;hl=en" target="_blank" rel="noopener">View on Google Play ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======== OWN APPS ======== -->
+  <section id="shipped" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Developing Buddy · my own Play Store account</div>
+      <h2>Five apps I built and published myself</h2>
+      <p>Solo, end to end: idea, UI, code, store listing, releases and updates. <a href="https://play.google.com/store/apps/dev?id=7675126792811795885" target="_blank" rel="noopener">See the developer page ↗</a></p>
+    </div>
+    <div class="shipped">
+      <div>
+        <div class="t">Word Wheel: Connect &amp; Spell</div>
+        <div class="s">Word puzzle game — gesture-based letter wheel, level progression, full offline play.</div>
+      </div>
+      <div>
+        <div class="t">Dhundo Sarkari</div>
+        <div class="s">Government job listings and exam updates for Indian aspirants. ★ 5.0</div>
+      </div>
+      <div>
+        <div class="t">NFC Reader Pro</div>
+        <div class="s">Reads and decodes NFC tags — NDEF records, tag technology details, scan history.</div>
+      </div>
+      <div>
+        <div class="t">Tarot Guru</div>
+        <div class="s">Tarot readings with illustrated spreads and card meanings. ★ 5.0</div>
+      </div>
+      <div>
+        <div class="t">Ram Shalaka Prashnavali</div>
+        <div class="s">Digital version of the traditional Ramcharitmanas oracle grid. ★ 4.5</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SKILLS ======== -->
+  <section id="skills" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Toolkit</div>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills">
+      <div>
+        <h4>Mobile development</h4>
+        <ul><li>Android SDK</li><li>Jetpack Compose</li><li>Flutter</li><li>Kotlin Multiplatform (KMP)</li><li>ARCore</li></ul>
+      </div>
+      <div>
+        <h4>Languages</h4>
+        <ul><li>Kotlin</li><li>Dart</li><li>Java</li></ul>
+      </div>
+      <div>
+        <h4>Architecture</h4>
+        <ul><li>MVVM</li><li>Clean Architecture</li><li>Modular architecture</li><li>Offline-first</li><li>Server-driven UI</li></ul>
+      </div>
+      <div>
+        <h4>APIs &amp; data</h4>
+        <ul><li>REST APIs</li><li>GraphQL</li><li>Retrofit</li><li>Coroutines &amp; Kotlin Flow</li><li>Room Database</li></ul>
+      </div>
+      <div>
+        <h4>Firebase &amp; ML</h4>
+        <ul><li>Firebase ML Kit</li><li>Firebase AI</li><li>Firebase Analytics</li><li>Google AdMob</li><li>CameraX, OCR</li></ul>
+      </div>
+      <div>
+        <h4>Tools &amp; DevOps</h4>
+        <ul><li>Android Studio</li><li>Git &amp; GitHub</li><li>CI/CD</li><li>Google Play Console</li><li>Jira</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== EXPERIENCE ======== -->
+  <section id="experience" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Experience &amp; education</div>
+      <h2>Where I've done it</h2>
+    </div>
+
+    <div class="role">
+      <div class="when">Jan 2025 — Present</div>
+      <div>
+        <h3>Software Engineer</h3>
+        <div class="co">BigOh Tech Pvt. Ltd. · Noida, India</div>
+        <ul class="bullets">
+          <li>Launched <b>12 Android, Flutter and KMP apps</b> serving <b>50,000+ daily active users</b>, meeting all sprint deadlines within a 6-engineer Agile team.</li>
+          <li>Architected deep linking, retry handling and push notification workflows, reducing API failures by <b>40%</b> and achieving a <b>99.2% crash-free session rate</b>.</li>
+          <li>Implemented MVVM, Clean Architecture and Server-Driven UI across <b>5+ apps</b>, cutting debugging time by <b>30%</b> and release cycles by <b>20%</b>.</li>
+          <li>Developed GPS tracking, NFC validation and offline-first Android SDK integrations for <b>3 field-ops apps</b> used by <b>200+ field agents</b> daily.</li>
+          <li>Accelerated cold startup by <b>35%</b> through startup optimisation, Compose recomposition tuning and memory leak fixes.</li>
+          <li>Coordinated with 3 cross-functional teams to deliver <b>12 Play Store and 5 App Store releases</b> on schedule; led code reviews and maintained technical documentation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">2022 — 2025</div>
+      <div>
+        <h3>B.Tech, Computer Science Engineering</h3>
+        <div class="co">CGC Landran, Mohali · 78.1%</div>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">2019 — 2022</div>
+      <div>
+        <h3>Diploma, Computer Engineering</h3>
+        <div class="co">Thapar Polytechnic College, Patiala · 78.7%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section id="contact" class="wrap contact">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's build something people actually install.</h2>
+    <p>Open to mobile engineering roles and freelance Android / Flutter work. Email is the fastest way to reach me.</p>
+    <div class="links">
+      <a href="mailto:kanavnayyer@gmail.com">kanavnayyer@gmail.com</a>
+      <a href="tel:+917087720273">+91 70877 20273</a>
+      <a href="https://www.linkedin.com/in/kanav-nayyer-61821b243" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://play.google.com/store/apps/dev?id=7675126792811795885" target="_blank" rel="noopener">Play Store ↗</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer>
+      <span>© <span id="yr">2026</span> Kanav Nayyar</span>
+      <span>Software Engineer · Android, Flutter &amp; KMP</span>
+      <span>Noida, India</span>
+    </footer>
+  </div>
+</main>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  document.querySelectorAll('.topnav a, .hero-actions a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var el = document.querySelector(a.getAttribute("href"));
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    });
+  });
+</script>
+
+</body>
+</html>
